@@ -1,4 +1,4 @@
-//Como as streams se conectam ao servidor http do Node ?
+//How streams are connected on Nodejs ?
 import http from 'node:http';
 import { Transform } from 'node:stream';
 
@@ -11,8 +11,9 @@ class InverseNumberStream extends Transform {
     callback(null, Buffer.from(String(transformed)));
   }
 }
-// req => Readable Stream
-// res => Writable Stream
+// Req => Readable Stream  // res => Writable Stream
+/* If req is readable stream, the stream contains chunk. A chunk is a fragment of the data that is sent by the client to server all chunks concepts to each other to make a buffer of the stream then the buffer is converted into meaningful data */
+
 const server = http.createServer(async (req, res) => {
   const buffers = [];
   for await (const chunk of req) {
@@ -21,7 +22,7 @@ const server = http.createServer(async (req, res) => {
   const fullStreamContent = Buffer.concat(buffers).toString();
   console.log(fullStreamContent);
   return res.end(fullStreamContent);
-  // return req.pipe(new InverseNumberStream()).pipe(res);//Le os dados e escreve os dados conforme os vai recebendo
+  // return req.pipe(new InverseNumberStream()).pipe(res);//Read the data and write it on demand.
 });
 
 server.listen(3334);

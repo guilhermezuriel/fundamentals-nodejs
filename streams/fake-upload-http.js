@@ -23,4 +23,4 @@ fetch('http://localhost:3334', {
   .then((response) => {
     return response.text();
   })
-  .then((data) => console.log(data)); //Envia Dados para o Front
+  .then((data) => console.log(data)); //Send the data to the front-end
