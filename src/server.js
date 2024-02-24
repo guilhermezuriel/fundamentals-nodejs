@@ -36,26 +36,16 @@ CRUD
   */
 
 import { json } from './middlewares/json.js';
-import { Database } from './database.js';
-import { randomUUID } from 'node:crypto'; //ID Universal Único
+import { routes } from './routes.js';
 
-const database = new Database();
 const server = http.createServer(async (req, res) => {
   const { method, url } = req;
   await json(req, res);
-  if (method == 'GET' && url == '/users') {
-    const users = database.select('users');
-    return res.end(JSON.stringify(users));
-  }
-  if (method === 'POST' && url == '/users') {
-    const { name, email } = req.body;
-    const user = {
-      id: randomUUID(),
-      nome: name,
-      email: email,
-    };
-    database.insert('users', user);
-    return res.writeHead(201).end();
+  const route = routes.find((route) => {
+    return route.method === method;
+  });
+  if (route) {
+    return route.handler(req, res);
   }
   return res.writeHead(404).end('Not Found'); //Error 404 - Qualquer rota que não exista
 });
