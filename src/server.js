@@ -1,40 +1,5 @@
 import http from 'node:http';
 
-/*
-CRUD
--Criar
--Remover
--Update
--Delete */
-
-//HTTP
-/*
-    -Método HTTP = GET POST PUT PATCH DELETE
-    -URL
-
-    GET => Buscar uma informação do backend
-    POST => Criar um recurso no back-end
-    PUT => Atualizar um recurso no back-end
-    PATCH => Atualizar uma informação específica de um recurso no back-end
-    DELETE => Remover um recurso no back-end
-
-    Stateful vs Stateless
-
-    -> Statefull = Salva informações em memória
-    -> Stateless = Salva informações em banco de dados, arquivos de texto e etc
-
-    Como o front-end vai saber se o dado recebido esta em formato JSON ?
-    Headers(Cabeçalhos| Requisição/Resposta) => Metadados
-
-    HTTP STATUS CODE
-    
-    INFORMATIVOS (100-199)
-    SUCESSO (200-299) PADRÃO = 200
-    REDIRECTION MESSAGES (300-399)
-    CLIENT ERROR (400-499) -> Erros geradas na requisição do Front-end
-    SERVER ERROR (500-599) -> Erros gerados na response do Back-end
-  */
-
 import { json } from './middlewares/json.js';
 import { routes } from './routes.js';
 
