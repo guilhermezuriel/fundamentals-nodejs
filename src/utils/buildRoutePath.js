@@ -3,8 +3,8 @@ export function buildRoutePath(path) {
   const pathWithParams = path.replaceAll(
     routeParamatersRegex,
     '(?<$1>[a-z0-9-_]+)',
-  ); //Replace the selected part for another Regex
+  ); //Replace the selected part, if there is one, for another Regex, to catch all the route path
 
-  const pathRegex = new RegExp(`^${pathWithParams}`);
+  const pathRegex = new RegExp(`^${pathWithParams}`); //Utilizes the pathRegex to get all the params, if there is one
   return pathRegex;
 }
